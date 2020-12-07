@@ -1,2 +1,1 @@
-val testi = "asdf"
-(0 to 2).toArray.foreach(x => print(testi.charAt(x)))
+List((1,2),(3,4)).length
