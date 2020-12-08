@@ -1,3 +1,4 @@
+import scala.collection.mutable
 import scala.io.Source
 
 
@@ -61,5 +62,21 @@ object AoC7 extends App {
 
     def getInnerBags(bag: Vector[String]): Vector[String] = bag(1).split(", ").map(_.replaceAll("[0-9]", "").trim).toVector
     def getInnerBagsAndNumbers(bag: Vector[String]): Vector[String] = bag(1).split(", ").map(_.trim).toVector
+}
+
+object test extends App {
+    import scala.collection.mutable.HashMap
+    val testi = "clear brown bags contain 3 light olive bags, 1 shiny beige bag.".replaceAll("bags", "").replaceAll("bag", "").replaceAll("\\.","")
+
+    var hashMap = new mutable.HashMap[String, mutable.HashMap[String, Int]]()
+
+    val split = testi.split(" contain ")
+    var values = new mutable.HashMap[String, Int]()
+    val bags = split(1).split(", ").map(_.trim)
+    for (bag <- bags) {
+        values += (bag.substring(2, bag.length) -> bag.split(" ")(0).toInt)
+    }
+    hashMap += (split(0).trim -> values)
+    println(hashMap.get("clear brown"))
 }
 
